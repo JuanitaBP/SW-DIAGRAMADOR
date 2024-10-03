@@ -13,11 +13,3 @@ export const DBComponent = ({ atributos, tipos, primaryKey }) => {
         </div>
     )
 }
-
-{/* <div key={index} className=''>
-    <div>{atributo} :</div>
-    <div>{tipos[index]}</div>
-    {primaryKey.includes(atributos[index]) &&
-        <div className='p-1 px-2'><BsFillKeyFill /></div>
-    }
-</div> */}

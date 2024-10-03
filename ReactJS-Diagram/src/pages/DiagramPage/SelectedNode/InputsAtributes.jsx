@@ -41,7 +41,7 @@ export const InputsAtributes = ({ index,atributo, tipos, deleteAtributo, primary
 
     return (
         <div>
-            <input type="text" name="titulo" onChange={handleatributoChange} value={atributos} className='px-2 bg-[#2A2A2A] rounded border border-gray-600' />
+            <input type="text" name="titulo" onChange={handleatributoChange} value={atributos} className='px-2 bg-[#F8E6BCFF] rounded border border-gray-400' />
             <SelectOption
                 options={options}
                 value={selectedOption}

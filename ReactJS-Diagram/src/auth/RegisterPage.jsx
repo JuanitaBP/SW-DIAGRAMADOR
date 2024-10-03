@@ -18,7 +18,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className='relative w-full h-screen bg-zinc-900/90'>
+    <div className='relative w-full h-screen bg-[#b582c5]'>
       <div className='absolute w-full h-full object-cover bg-gray-500 mix-blend-overlay'>
       </div>
       <div className='flex justify-center items-center h-full'>
@@ -33,7 +33,7 @@ export const RegisterPage = () => {
             <label>Password</label>
             <input className='border relative bg-gray-100 p-2' type="password" value={password} onChange={onInputChange} name="password" required />
           </div>
-          <button disabled={isAuthenticating} className='w-full py-3 mt-8 bg-indigo-600 hover:bg-indigo-500 relative text-white' type="submit">Sign In</button>
+          <button disabled={isAuthenticating} className='w-full py-3 mt-8 bg-indigo-700 hover:bg-[#F582AE] relative text-white' type="submit">Sign In</button>
 
           <p className='text-center mt-8'>No Tienes Cuenta?</p>
           <Link to="/auth/register" className="text-center block relative">

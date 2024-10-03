@@ -1,12 +1,15 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+
 import ReactFlow,
+
 {
   addEdge,
   applyNodeChanges,
   applyEdgeChanges,
   Panel,
   ReactFlowProvider,
-  useReactFlow
+  useReactFlow,
+  Background // Importar Background
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -20,7 +23,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useFetchProject } from '../../hooks/useFetchProject';
 import { updateProject } from '../../helpers/updateProject';
 import { SocketContext } from '../../context/SocketContext';
-import { Header } from '../HomePage/Header'; // Importar el componente Header
+import '../../utils/fileUtils'
+
 
 
 const edgeOptions = {
@@ -47,12 +51,30 @@ export const Diagram = () => {
   const reactFlowInstance = useReactFlow();
   const { socket } = useContext(SocketContext);
 
+  
+ 
+  // Función para exportar el diagrama
+  const handleExport = () => {
+    exportDiagram(nodes, edges);
+  };
+
+  // Función para importar el diagrama
+  const handleImport = (event) => {
+    const file = event.target.files[0];
+    importDiagram(file).then((data) => {
+      setNodes(data.nodes);
+      setEdges(data.edges);
+    }).catch((error) => {
+      console.error('Error al importar el diagrama:', error);
+    });
+  };
+
   useEffect(() => {
     socket.emit('joinRoom', { room: params.id })
 
     socket.on('newNode', (data) => {
       nodeId = data.nodeId
-      //setNodes((nds) => nds.concat(data.node));
+      
 
       // Asignar un color aleatorio si no tiene uno
       const num = Math.floor(Math.random() * backgroundColors.length);
@@ -218,26 +240,42 @@ export const Diagram = () => {
           onEdgesDelete={handleOnEdgesDelete}
           onNodeDragStop={handleOnNodeDragStop}
           style={{
-            backgroundColor: '#F3D2C1',
+            backgroundColor: '#D3B2A2FF' ,
+            
+            
           }}
        
         >
-          
+           {/* Agregar el componente Background aquí */}
+           <Background color="#ccc" variant="lines" gap={30} />
+
           <Panel position='top-center'>
             <Link to="/home"><button className='rounded bg-[#8BD3DD] p-1 text-black border border-gray-500 hover:bg-[#F582AE]'>Home</button>
             </Link>
-            <button className='rounded bg-[#8BD3DD] p-1 text-black mx-2 border border-gray-500 hover:bg-[#F582AE]' onClick={onCreate}>New Diagram</button>
+            <button className='rounded bg-[#8BD3DD] p-1 text-black mx-2 border border-gray-500 hover:bg-[#F582AE]' onClick={onCreate}>New Class</button>
             <button className='rounded bg-[#8BD3DD] p-1 text-black mx-2 border border-gray-500 hover:bg-[#F582AE]' onClick={handleClickSave}>Guardar Cambios</button>
-            <button className='rounded bg-[#8BD3DD] p-1 text-black border border border-gray-500 hover:bg-[#F582AE]' >Generar Script</button>
+                {/* Botón para exportar el diagrama */}
+              <button className='rounded bg-[#8BD3DD] p-1 text-black border border-gray-500 hover:bg-[#F582AE]' onClick={handleExport}>Exportar .eapx</button>
+
+{/* Input para importar el diagrama */}
+<input
+  type="file"
+  accept=".eapx"
+  onChange={handleImport}
+  className='rounded bg-[#8BD3DD] p-1 text-black border border-gray-500 hover:bg-[#F582AE]'
+/>
           </Panel>
 
           <Panel position='bottom-left'>
             <CopyBoard />
           </Panel >
-          
-          <MultiSelectionToolbar setNodes={handleNodeChange} />
-          <SelectedEdge setEdges={handleEdgeChange} />
-          
+        
+
+      
+        <MultiSelectionToolbar setNodes={handleNodeChange} />
+        <SelectedEdge setEdges={handleEdgeChange} />
+
+           
         </ReactFlow>
         : <div><h1>Cargando Diagrama {proyecto.id}</h1></div>
     }

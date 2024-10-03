@@ -42,6 +42,7 @@ export const SelectedEdge = ({ setEdges }) => {
                     ed.data.label = newEdge;
                     ed.style = {
                         strokeWidth: 2,
+                        stroke:'#000000'
                     }
                 }
                 else if (type.includes("Herencia")) {
@@ -63,11 +64,11 @@ export const SelectedEdge = ({ setEdges }) => {
                         type: MarkerType.Arrow,
                         width: 15,
                         height: 15,
-                        color: '#FFFFFF'
+                        color: '#FF0000FF'
                     };
                     ed.style = {
                         strokeWidth: 2,
-                        stroke: '#FFFFFF',
+                        stroke: '#FF0505FF',
                     };
                 }
                 else if (type.includes("Composicion")) {
@@ -85,11 +86,14 @@ export const SelectedEdge = ({ setEdges }) => {
                 else if (type.includes("Dependencia")) {
                     ed.label = "Dependencia";
                     ed.animated = true;
-                    ed.markerEnd = { type: MarkerType.Arrow };
+                    ed.markerEnd = { type: MarkerType.Arrow , color:'#000000'};
                     ed.style = {
                         strokeWidth: 2,
+                       stroke:'#000000',
                     };
-                }
+                } 
+
+
                 ed.data.tipo = type;
                 ed.selected = false;
             }
@@ -112,9 +116,9 @@ export const SelectedEdge = ({ setEdges }) => {
     return (
         <>
             {isVisible &&
-                <Panel position="top-right">
+                <Panel position="top-left">
                     {edge != undefined &&
-                        <div className='text-center text-white'>
+                        <div className='text-center text-black border border-#2E666DFF shadow-2xl' >
                             <div className="grid grid-cols-2 grap-2 my-2">
                                 <div>Tipo Relacion:</div>
                                 <TypeEdge type={type} change={handleTypeChange} />

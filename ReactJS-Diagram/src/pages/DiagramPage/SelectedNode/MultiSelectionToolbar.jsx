@@ -90,11 +90,11 @@ export const MultiSelectionToolbar = ({ setNodes }) => {
   return (
     <>
       {isVisible &&
-        <Panel position="top-right">
-          <div className='grid grid-rows-3 gap-1 text-center text-white'>
+        <Panel position="bottom-right">
+          <div className='grid grid-rows-3 gap-1 text-center text-black border shadow-2xl ' >
             <h2>NodeID: {selectedNodeIds}</h2>
-            <input type="text" name="titulo" value={titulo} onChange={onInputChange} className='px-2 bg-[#2A2A2A] rounded border border-gray-600' />
-            <button className='bg-blue-900 rounded' onClick={addAtributo}>Agregar Atributo</button>
+            <input type="text" name="titulo" value={titulo} onChange={onInputChange} className='px-2 bg-[#F8E6BCFF] rounded border border-gray-400' />
+            <button className='bg-[#8BD3DD] rounded' onClick={addAtributo}>Agregar Atributo</button>
             {atributos != undefined &&
               atributos.map((atributo, index) => (
                 <InputsAtributes key={index} index={index}

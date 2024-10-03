@@ -11,12 +11,14 @@ export const TypeEdge = ({type, change}) => {
         { value: 'Agregacion', label: 'Agregacion' },
         { value: 'Composicion', label: 'Composicion' },
         { value: 'Dependencia', label: 'Dependencia' },
+        { value: 'AsociacionClass', label: 'Asociacion Class' },
         
     ];
 
     const OptionChange = (event) => {
         setSelectedOption(event.target.value);
         change(event.target.value);
+        
     };
 
     useEffect(() => {
