@@ -1,0 +1,38 @@
+/* styles.css */
+.header {
+    background-color: #b582c5; /* Color de fondo personalizado */
+    color: #001858; /* Color del texto */
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: space-between; /* Espaciar los elementos */
+    align-items: center; /* Centrar los elementos verticalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle un estilo */
+    width: 100%;
+    height: 60%;
+    padding: 16px;
+  }
+  /* styles.css */
+.logout-button {
+    background-color: #F582AE;
+    color: #001858;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button:hover {
+    background-color: #8BD3DD; /* Cambia el color al pasar el mouse */
+  }
+  
+  /* Estilo para centrar el nombre */
+.nombreHome {
+    margin: 0; /* Elimina márgenes predeterminados */
+    text-align: center;
+  }
+  
+  .nombre-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    flex-grow: 1; /* Permite que el contenedor ocupe el espacio restante */
+  }
